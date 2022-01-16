@@ -1,9 +1,5 @@
 var assert = require("assert")
-// Given an array of numbers, return a new array so that positive and negative
-// numbers alternate. You can assume that 0 is a positive number. Within the
-// positive and negative numbers, you must keep their relative order. You are 
-// guaranteed the number of positive and negative numbers will not differ by more 
-// than 1.
+
 
 // =====Example 1
 // Input: [1, -3, -8, -5, 10]
@@ -31,8 +27,39 @@ var assert = require("assert")
 // Explanation: Empty array...
 
 const altNumbers = (numArray) => {
-    // TODO: COMPLETE THIS FUNCTION
-    return [];
+    // Given an array of numbers, return a new array so that positive and negative
+    // numbers alternate. You can assume that 0 is a positive number. Within the
+    // positive and negative numbers, you must keep their relative order. You are 
+    // guaranteed the number of positive and negative numbers will not differ by more 
+    // than 1.
+    let newArray = [];
+    let positive = [];
+    let negative = [];
+    let i = 0;
+    while (i < numArray.length) {
+        if (numArray[i] >= 0) {
+            positive.push(numArray[i]);
+        } else {
+            negative.push(numArray[i]);
+        }
+        i++;
+    }
+    i = 0;
+    let j = 0;
+    let k = 0;
+    let flag = positive.length > negative.length? true: false;
+    while (i < positive.length + negative.length) {
+        if (flag) {
+            newArray.push(positive[j]);
+            j++;
+        } else if (!flag) {
+            newArray.push(negative[k]);
+            k++;
+        }
+        flag = !flag;
+        i++;
+    }
+    return newArray;
 }
 
 module.exports = { altNumbers } // Do not modify this line
